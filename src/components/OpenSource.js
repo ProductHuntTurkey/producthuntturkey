@@ -22,7 +22,7 @@ const Content = styled.h1`
 
 const Link = styled.a.attrs({
     target: "_blank",
-    href: "#"
+    href: "https://github.com/ProductHuntTurkey/producthuntturkey.github.io"
 })`
     text-decoration: none;
     opacity: 1;
