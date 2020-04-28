@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
+import {BrowserRouter as Router, Route, Switch, HashRouter} from "react-router-dom"
 
 import './App.css';
 
@@ -16,23 +16,25 @@ import NotFound from "../pages/NotFound"
 
 function App() {
   return (
-    <Router>
-      <div>
-        <OpenSource/>
-        <Header/>
-        <Newsletter />
-        <Developer/>
-        <Developer2/>
-        <Switch>
-          <Route exact path="/" component={Products}/>
-          <Route exact path="/acik-girisim"><OpenStartup/></Route>
-          <Route exact path="/girisimini-ekle"><AddYourStartup/></Route>
-          <Route>
-            <NotFound/>
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+    <HashRouter basename='/'>
+      <Router>
+        <div>
+          <OpenSource/>
+          <Header/>
+          <Newsletter />
+          <Developer/>
+          <Developer2/>
+          <Switch>
+            <Route exact path="/" component={Products}/>
+            <Route exact path="/acik-girisim"><OpenStartup/></Route>
+            <Route exact path="/girisimini-ekle"><AddYourStartup/></Route>
+            <Route>
+              <NotFound/>
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    </HashRouter>
   );
 }
 
