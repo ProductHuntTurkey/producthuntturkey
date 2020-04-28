@@ -29,4 +29,3 @@ Product Hunt Turkey tamamen açık kaynak olarak geliştirilmektedir. Siz de biz
 ## Katkıda bulunanlar
 * [Abdullah ŞAHİN](https://github.com/mrabdullahsahin)
 * [Ubeyd GENCER](https://github.com/ubeydgencer)
-* [Yakup YIGIT](https://github.com/yakupyıgıt)
