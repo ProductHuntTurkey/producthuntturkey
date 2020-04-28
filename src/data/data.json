@@ -40,17 +40,6 @@
             ]
         },
         {
-            "productDate" : "02 Nisan 2020",
-            "ProductInfo" : [
-                {
-                    "productName" : "Sheet2Cal",
-                    "productDescription" : "Etkinlik verilerinizi Google E-Tablolar’daki favori takvim uygulamanızla senkronize etmenize yardımcı olur.",
-                    "productLink" : "https://www.producthunt.com/posts/sheet2cal",
-                    "productPicture" : "sheet2cal"
-                }
-            ]
-        },
-        {
             "productDate" : "01 Nisan 2020",
             "ProductInfo" : [
                 {
@@ -351,7 +340,7 @@
             ]
         },
         {
-            "Date" : "18 Kasım 2019",
+            "productDate" : "18 Kasım 2019",
             "ProductInfo" : [
                 {
                     "productName" : "Botmake",
@@ -373,7 +362,7 @@
             ]
         },
         {
-            "Date" : "19 Eylül 2019",
+            "productDate" : "19 Eylül 2019",
             "ProductInfo" : [
                 {
                     "productName" : "Learnember",
@@ -395,7 +384,7 @@
             ]
         },
         {
-            "Date" : "02 Eylül 2019",
+            "productDate" : "02 Eylül 2019",
             "ProductInfo" : [
                 {
                     "productName" : "Social Media Tools Comparison",

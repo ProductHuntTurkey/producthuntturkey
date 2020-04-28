@@ -73,3 +73,4 @@ exports.sheet2cal = require('../data/images/sheet2cal.gif');
 exports.screenshottracker = require('../data/images/screenshottracker.jpeg');
 exports.thripy = require('../data/images/thripy.gif');
 exports.simplenote = require('../data/images/simplenote.gif');
+exports.bestup = require('../data/images/bestup.gif');
