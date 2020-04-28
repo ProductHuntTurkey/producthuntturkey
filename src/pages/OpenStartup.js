@@ -52,7 +52,7 @@ function OpenStartup() {
         <Container>
             <Metric>
                 <MetricTitle>Toplam Yayınlanan Girişim</MetricTitle>
-                <MetricContent>250</MetricContent>
+                <MetricContent>78</MetricContent>
             </Metric>
 
             <Metric>
@@ -62,7 +62,7 @@ function OpenStartup() {
 
             <Metric>
                 <MetricTitle>Toplam Telegram Kanalı Abonesi</MetricTitle>
-                <MetricContent>96</MetricContent>
+                <MetricContent>97</MetricContent>
             </Metric>
         </Container>
     )   
