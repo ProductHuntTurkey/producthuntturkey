@@ -1,6 +1,79 @@
 {
     "Startups" : [
         {
+            "productDate" : "25 Nisan 2020",
+            "ProductInfo" : [
+                {
+                    "productName" : "Voteflix",
+                    "productDescription" : "Voteflix, Netflix içeriklerini derecelendirmenizi ve incelemenizi sağlayan bir chrome eklentisi.",
+                    "productLink" : "https://www.producthunt.com/posts/voteflix",
+                    "productPicture" : "voteflix"
+                }
+            ]
+        },
+        {
+            "productDate" : "24 Nisan 2020",
+            "ProductInfo" : [
+                {
+                    "productName" : "Desk Story",
+                    "productDescription" : "Desk Story, çalışma istatistikleriniz için güzel sayfalar oluşturmanızı sağlayan açık kaynak bir girişimdir.",
+                    "productLink" : "https://www.producthunt.com/posts/desk-story",
+                    "productPicture" : "deskstory"
+                }
+            ]
+        },
+        {
+            "productDate" : "22 Nisan 2020",
+            "ProductInfo" : [
+                {
+                    "productName" : "Drive & Listen",
+                    "productDescription" : "Drive & Listen, internet üzerinden araba ile seçtiğiniz şehirde dolaşırken aynı zamanda o şehrin yerel radyolarını dinleyebileceğiniz bir proje.",
+                    "productLink" : "https://www.producthunt.com/posts/drive-listen",
+                    "productPicture" : "drivelisten"
+                },
+                {
+                    "productName" : "Smoothly",
+                    "productDescription" : "Smoothly, Smoothie tarifleri bulunan bir uygulama.",
+                    "productLink" : "https://www.producthunt.com/posts/smoothly-goal-based-smoothie-recipes",
+                    "productPicture" : "smoothly"
+                }
+            ]
+        },
+        {
+            "productDate" : "15 Nisan 2020",
+            "ProductInfo" : [
+                {
+                    "productName" : "Analytics",
+                    "productDescription" : "Analytics, Versoly girişimi tarafından geliştirilmiş yeni bir analiz uygulaması. Bu uygulama ile SaaS projeniz için istatistikleri görebilmenizi sağlıyor.",
+                    "productLink" : "https://www.producthunt.com/posts/analytics-by-versoly",
+                    "productPicture" : "analyticsversoly"
+                },
+                {
+                    "productName" : "GREEND",
+                    "productDescription" : "GREEND, gizlilik ve güvenlikle birlikte 4 mevsim doğal görünüm ve yeşil hissi veren yeni nesil bir çim çittir.",
+                    "productLink" : "https://www.producthunt.com/posts/greend",
+                    "productPicture" : "greend"
+                }
+            ]
+        },
+        {
+            "productDate" : "14 Nisan 2020",
+            "ProductInfo" : [
+                {
+                    "productName" : "Shedled",
+                    "productDescription" : "Shedled, programınızı düzenlemek için basit, kolay ve ücretsiz bir yazılımdır.",
+                    "productLink" : "https://www.producthunt.com/posts/shedled",
+                    "productPicture" : "shedled"
+                },
+                {
+                    "productName" : "COVID-Meter",
+                    "productDescription" : "COVID-Meter, müşterilerinizin salgından nasıl etkilendiğini öğrenmek ve karmaşayı azaltmak ve kullanıcılarınıza yardımcı olmak için en çok etkilenen kişilere özel promosyonlar sunmak için kurulumu kolay bir anket aracıdır.",
+                    "productLink" : "https://www.producthunt.com/posts/covid-meter-surveys-by-userguiding",
+                    "productPicture" : "covidmeter"
+                }
+            ]
+        },
+        {
             "productDate" : "09 Nisan 2020",
             "ProductInfo" : [
                 {
