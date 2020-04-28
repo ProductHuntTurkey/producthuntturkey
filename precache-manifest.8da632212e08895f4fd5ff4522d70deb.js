@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8892141015d18f962477013a7a2334a0",
+    "revision": "570b8f74d12ce88db680d26d18269ef2",
     "url": "/index.html"
   },
   {
-    "revision": "fe6e6239d18e8b14f60c",
+    "revision": "41e01acfec216732e16d",
     "url": "/static/css/main.a84b379d.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/2.52265773.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "fe6e6239d18e8b14f60c",
-    "url": "/static/js/main.3fc01cd9.chunk.js"
+    "revision": "41e01acfec216732e16d",
+    "url": "/static/js/main.1fd236d8.chunk.js"
   },
   {
     "revision": "7cf878625f3503ee1243",
@@ -34,6 +34,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "cc72acf93dc1fb1b3a5e95cea1b7c1d2",
     "url": "/static/media/bell-care.cc72acf9.gif"
+  },
+  {
+    "revision": "1967edd040facb052d568df1af073adc",
+    "url": "/static/media/bestup.1967edd0.gif"
   },
   {
     "revision": "0a860919ea1f7a1f62b54945df19b3e0",
@@ -54,6 +58,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "73b66bf45b15e30dfb7184b5c89001bd",
     "url": "/static/media/coronareader.73b66bf4.gif"
+  },
+  {
+    "revision": "3d9da7dc22347998a0718d891a821cd0",
+    "url": "/static/media/covidmeter.3d9da7dc.gif"
   },
   {
     "revision": "bc2958195a3ed16947faafb07a014bf3",
@@ -90,6 +98,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "62a35c833920fc7232994c5282911973",
     "url": "/static/media/graphjs2.62a35c83.png"
+  },
+  {
+    "revision": "0475ea2c67079d45e44b8c0c1e4ee666",
+    "url": "/static/media/greend.0475ea2c.gif"
   },
   {
     "revision": "c916ef927ac8b248ea5af95f084ab25e",
@@ -134,6 +146,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "a7655ef00dfaef6f8e6db802961ff9a2",
     "url": "/static/media/remoteteam-com.a7655ef0.gif"
+  },
+  {
+    "revision": "6b0d4d8700d1978896c36c5b99b7b51a",
+    "url": "/static/media/shedled.6b0d4d87.png"
   },
   {
     "revision": "cd50be54cd52e89746a7c2d9872af810",
