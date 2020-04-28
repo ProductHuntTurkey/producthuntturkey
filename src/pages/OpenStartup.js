@@ -52,7 +52,7 @@ function OpenStartup() {
         <Container>
             <Metric>
                 <MetricTitle>Toplam Yayınlanan Girişim</MetricTitle>
-                <MetricContent>78</MetricContent>
+                <MetricContent>86</MetricContent>
             </Metric>
 
             <Metric>
