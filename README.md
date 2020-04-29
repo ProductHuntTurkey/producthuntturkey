@@ -22,6 +22,9 @@ Projeyi ayağa kaldır;
 
 	npm start
 
+## [Telegram Kanalımız](https://t.me/producthuntturkey)
+## [Mail Listemiz](https://producthuntturkey.substack.com/)
+
 
 ## Sen de katkıda bulun
 Product Hunt Turkey tamamen açık kaynak olarak geliştirilmektedir. Siz de bizlere öneri ya da şikayetlerinizi [bildirebilir](https://github.com/ProductHuntTurkey/producthuntturkey.github.io/issues), yapacağınız geliştirmeler ile proye katkıda bulunabilirsiniz.
