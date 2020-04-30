@@ -97,7 +97,7 @@ const Header = ({ siteTitle }) => (
                 <Menu>Açık Girişim</Menu>
             </Link>
 
-            <Link to="/page-2/">
+            <Link to="/girisimini-ekle/">
                 <Menu>Girişimini Ekle</Menu>
             </Link>
         </Nav>
