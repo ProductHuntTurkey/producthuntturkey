@@ -93,8 +93,8 @@ const Header = ({ siteTitle }) => (
         </Link>
 
         <Nav>
-            <Link to="/page-2/">
-                <Menu> Açık Girişim</Menu>
+            <Link to="/acik-girisim/">
+                <Menu>Açık Girişim</Menu>
             </Link>
 
             <Link to="/page-2/">
