@@ -1,6 +1,40 @@
 {
     "Startups" : [
         {
+            "productDate" : "01 Mayıs 2020",
+            "ProductInfo" : [
+                {
+                    "productName" : "Apple Watch Hand Raise Tracker",
+                    "productDescription" : "Apple Watch Hand Raise Tracker, el kaldırma takibi uygulaması ile elinizi kaldırdığınız zaman uyarı alıyorsunuz ve sayım yapabiliyorsunuz.",
+                    "productLink" : "https://www.producthunt.com/posts/apple-watch-hand-raise-tracker",
+                    "productPicture" : "applewatchhandraisetracker"
+                }
+            ]
+        },
+        {
+            "productDate" : "30 Nisan 2020",
+            "ProductInfo" : [
+                {
+                    "productName" : "Photo Scanner and Colorizer",
+                    "productDescription" : "Eski siyah beyaz fotoları AI ile renklendiren iOS uygulaması.",
+                    "productLink" : "https://www.producthunt.com/posts/photo-scanner-and-colorizer",
+                    "productPicture" : "photoscannerandcolorizer"
+                },
+                {
+                    "productName" : "Influencer Analytics by Interceptd",
+                    "productDescription" : "Influencer Analytics, Instagram’da fenomenlerin kampanyası öncesinde, sırasında ve sonrasında paylaşılan kitleyi, etkileşimi, URL’leri ve yayınları derinlemesine görmenizi sağlar.",
+                    "productLink" : "https://www.producthunt.com/posts/influencer-analytics-by-interceptd",
+                    "productPicture" : "influenceranalytics"
+                },
+                {
+                    "productName" : "Telemedicine Toolkit",
+                    "productDescription" : "Telemedicine Toolkit, e-imza toplamanıza, randevuları planlamanıza, dosya almanıza, ödemeleri kabul etmenize ve hastalarınızı herhangi bir cihazdan tedavi etmenize olanak tanır.",
+                    "productLink" : "https://www.producthunt.com/posts/telemedicine-toolkit-by-jotform",
+                    "productPicture" : "telemedicinetoolkit"
+                }
+            ]
+        },
+        {
             "productDate" : "25 Nisan 2020",
             "ProductInfo" : [
                 {
