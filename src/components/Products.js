@@ -114,7 +114,6 @@ const Link = styled.a.attrs({
 `;
 
 const Button = styled.button`
-    width: 100px;
     height: 50px;
     border-radius: 10px;
     color: black;
