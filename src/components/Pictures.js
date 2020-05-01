@@ -82,3 +82,7 @@ exports.smoothly = require('../data/images/smoothly.jpeg');
 exports.drivelisten = require('../data/images/drivelisten.jpeg');
 exports.deskstory = require('../data/images/deskstory.jpeg');
 exports.voteflix = require('../data/images/voteflix.jpeg');
+exports.photoscannerandcolorizer = require('../data/images/photoscannerandcolorizer.gif');
+exports.influenceranalytics = require('../data/images/influenceranalytics.gif');
+exports.telemedicinetoolkit = require('../data/images/telemedicinetoolkit.gif');
+exports.applewatchhandraisetracker = require('../data/images/applewatchhandraisetracker.jpeg');
