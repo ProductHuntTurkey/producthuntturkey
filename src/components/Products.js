@@ -35,6 +35,7 @@ const StartupList = styled.section`
     background: #FFFFFF;
     margin: auto;
     margin-bottom: 15px;
+    border-radius: 5px;
 
     @media (max-width: 900px) {
         width: 98%;
@@ -50,7 +51,7 @@ const ListData = styled.article`
     width: 100%; 
     padding-bottom: 15px;
     border-radius: 5px;
-
+    
     &:hover{
         background-color: black;
         color: white;
