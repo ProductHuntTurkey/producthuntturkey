@@ -33,7 +33,6 @@ const StartupList = styled.section`
     align-items: center;
     width: 65%;
     background: #FFFFFF;
-    border-radius: 5px;
     margin: auto;
     margin-bottom: 15px;
 
@@ -50,6 +49,7 @@ const ListData = styled.article`
     justify-content: space-around;
     width: 100%; 
     padding-bottom: 15px;
+    border-radius: 5px;
 
     &:hover{
         background-color: black;
