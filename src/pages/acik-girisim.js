@@ -1,8 +1,19 @@
 import React from 'react'
 import styled from "styled-components"
 
+import data from "../data/data.json"
+
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+
+function getProductsLength(){
+    let totalProducts = 0, i;
+    
+    for (i in data.Startups) {
+      totalProducts += data.Startups[i].ProductInfo.length;
+    }
+    return totalProducts;
+  }
 
 const Container = styled.div`
     display: flex;
@@ -56,7 +67,7 @@ const OpenStartupPage = () => (
         <Container>
             <Metric>
                 <MetricTitle>Toplam Yayınlanan Girişim</MetricTitle>
-                <MetricContent>86</MetricContent>
+                <MetricContent>{getProductsLength()}</MetricContent>
             </Metric>
 
             <Metric>
