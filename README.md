@@ -14,8 +14,8 @@ Kurulum
 
 Projeyi klonla;
 
-	git@github.com:ProductHuntTurkey/producthuntturkey.github.io.git
-	cd producthuntturkey.github.io
+	git clone https://github.com/ProductHuntTurkey/producthuntturkey.git
+	cd producthuntturkey
 
 Gatsby-cli kur;
 
@@ -29,9 +29,8 @@ Projeyi ayağa kaldır;
 
 	gatsby develop
 
-
-### Telegram Kanalımız -> https://t.me/producthuntturkey
-### Mail Listemiz -> https://producthuntturkey.substack.com/
+### Telegram Kanalımız: https://t.me/producthuntturkey
+### Mail Listemiz: https://producthuntturkey.substack.com/
 
 
 ## Sen de katkıda bulun
