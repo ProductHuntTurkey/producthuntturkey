@@ -72,12 +72,12 @@ const OpenStartupPage = () => (
 
             <Metric>
                 <MetricTitle>Toplam Mail Abonesi</MetricTitle>
-                <MetricContent>180</MetricContent>
+                <MetricContent>178</MetricContent>
             </Metric>
 
             <Metric>
                 <MetricTitle>Toplam Telegram Kanalı Abonesi</MetricTitle>
-                <MetricContent>97</MetricContent>
+                <MetricContent>99</MetricContent>
             </Metric>
         </Container>
     </Layout>
