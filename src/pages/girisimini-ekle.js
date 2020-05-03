@@ -1,35 +1,17 @@
-import React from 'react';
-import styled from 'styled-components'
+import React from "react"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const IframeDiv = styled.div`
-    display: flex;
-    justify-content: center;
-`
+import "../styles/girisimini-ekle.css"
 
-const Iframe = styled.iframe`
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #EEE; 
-    background:#F5F5F5;
-    width: 65%;
-    height: 500px;
-
-    @media (max-width: 900px) {
-        width: 90%;
-        height: 500px;
-    }
-`;
-
-const AddYourStartupPage = () => (
-    <Layout>
-        <SEO title="Girişimini Ekle"/>
-        <IframeDiv>
-            <Iframe title="form" src="https://docs.google.com/forms/d/e/1FAIpQLSeytVuWJH6XeEKpVc5w9RFOmyqBen6tZD1CyKE4nMk5-PpqXA/viewform?embedded=true" width="760" height="500" frameborder="0" marginheight="0" marginwidth="0">Yükleniyor…</Iframe>
-        </IframeDiv>
-    </Layout>
+const AddYourProduct = () => (
+  <Layout>
+    <SEO title="Girişimini Ekle" />
+    <div className="IframeDiv">
+        <iframe className="Iframe" title="form" src="https://docs.google.com/forms/d/e/1FAIpQLSeytVuWJH6XeEKpVc5w9RFOmyqBen6tZD1CyKE4nMk5-PpqXA/viewform?embedded=true" width="760" height="500" frameborder="0" marginheight="0" marginwidth="0">...Yükleniyor</iframe>
+    </div>
+  </Layout>
 )
 
-export default AddYourStartupPage
+export default AddYourProduct

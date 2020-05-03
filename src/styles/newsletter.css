@@ -1,0 +1,58 @@
+.Container{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.Details{
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    width: 65%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: white;
+    border-radius: 5px;
+    color: black;
+}
+
+.Summary{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.MailDiv{
+    display: flex;
+    justify-content: center;
+}
+
+.MailIframe{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #EEE; 
+    background:#F5F5F5;
+    width: 480px;
+    height: 320px;
+}
+
+@media (max-width: 900px){
+    .Details{
+        width: 98%;
+    }
+
+    .Iframe{
+        width: 90%;
+        height: 320px;
+    }
+}
+
