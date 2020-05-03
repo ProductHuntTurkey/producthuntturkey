@@ -1,0 +1,20 @@
+.IframeDiv{
+    display: flex;
+    justify-content: center;
+}
+
+.Iframe{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #EEE; 
+    background:#F5F5F5;
+    width: 65%;
+    height: 500px;
+}
+
+@media (max-width: 900px){
+    .Iframe{
+        width: 90%;
+        height: 500px;
+    }
+}

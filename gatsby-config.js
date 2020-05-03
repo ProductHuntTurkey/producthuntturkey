@@ -1,8 +1,16 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Product Hunt Turkey`,
+    description: `Product Hunt Turkey`,
+    author: `@mrabdullahsahin`,
+    url: 'https://producthuntturkey.netlify.app',
+    socialLinks: {
+      twitter: { name: 'Twitter', url: 'https://twitter.com/mrabdullahsahin'},
+      twitter: { name: 'Twitter', url: 'https://twitter.com/ubeydgencer'},
+      github: { name: 'Github', url: 'https://github.com/mrabdullahsahin'},
+      github: { name: 'Github', url: 'https://github.com/ubeydgencer'},
+      producthuntturkey: { name: 'Product Hunt Turkey', url: 'https://t.me/producthuntturkey'}
+    }
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -18,13 +26,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `Product Hunt Turkey`,
+        short_name: `producthuntturkey`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#000000`,
+        theme_color: `#000000`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/logo192.png`, // This path is relative to the root of the site.
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
