@@ -2,7 +2,7 @@ import React from 'react'
 
 import data from "../data/data.json"
 import "../styles/products.css"
-import Pictures from "./pictures"
+import Pictures from "./Pictures"
 
 const Products = () => (
     <div className="ProductSection">

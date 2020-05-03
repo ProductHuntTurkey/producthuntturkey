@@ -10,9 +10,10 @@ import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
-import DeveloperInfo from "./developerinfo"
-import DeveloperInfo2 from "./developerinfo2"
-import Newsletter from "./newsletter"
+import DeveloperInfo from "./DeveloperInfo"
+import DeveloperInfo2 from "./DeveloperInfo2"
+import Newsletter from "./Newsletter"
+import OpenSource from "./OpenSource"
 
 import "../styles/layout.css"
 
@@ -29,6 +30,7 @@ const Layout = ({ children }) => {
 
   return (
     <>
+      <OpenSource/>
       <Header siteTitle={data.site.siteMetadata.title} />
       <Newsletter/>
       <div>
