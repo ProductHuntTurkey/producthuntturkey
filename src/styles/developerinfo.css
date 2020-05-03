@@ -1,0 +1,22 @@
+.Developer{
+    position: fixed;
+    bottom: 0;
+    width: 150px;
+    text-align: center;
+    background-color: black;
+    padding: 5px;
+}
+
+.Developer:hover{
+    background-color: black;
+    opacity: .8;
+    color: white;
+    text-decoration: none;
+}
+
+.Navigation{
+    text-decoration: none;
+    color: white;
+}
+
+
