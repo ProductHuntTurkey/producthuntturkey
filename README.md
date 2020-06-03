@@ -1,6 +1,6 @@
 ![Product Hunt Turkey](https://github.com/ProductHuntTurkey/producthuntturkey.github.io/blob/development/readme.jpg)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/7489bf2a-47fd-493e-9cc4-75ca1d713470/deploy-status)](https://app.netlify.com/sites/producthuntturkey/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/2db1759d-ec93-4184-955d-3ef02eac00b9/deploy-status)](https://app.netlify.com/sites/producthuntturkey/deploys)
 
 [Product Hunt Turkey](https://producthuntturkey.github.io/), Türkiye’den global pazara açılan/açılmak isteyen girişimlere destek olmak ve onları desteklemek isteyenleri bir araya getirmeyi amaçlayan bir oluşumdur.
 
