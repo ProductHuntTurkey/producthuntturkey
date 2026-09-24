@@ -1,0 +1,113 @@
+[
+  {
+    "id": "jotform",
+    "name": "Jotform",
+    "website": "https://www.jotform.com",
+    "people": [
+      {
+        "name": "Aytekin Tank",
+        "role": "kurucu"
+      }
+    ],
+    "headquarters": "San Francisco, ABD",
+    "connection": {
+      "turkishFounder": true,
+      "turkeyHeadquartered": false,
+      "turkeyOperations": true,
+      "makerTurkeyLink": null
+    },
+    "status": "dogrulandi",
+    "evidence": [
+      {
+        "url": "https://www.jotform.com/about/",
+        "title": "Jotform — Hakkımızda",
+        "supports": [
+          "kurucu rolü",
+          "şirket merkezi",
+          "Türkiye operasyonu"
+        ],
+        "summary": "Şirket, Aytekin Tank’ı kurucu olarak, San Francisco’yu merkez olarak ve Ankara, İzmir, İstanbul ofislerini belirtiyor.",
+        "checkedAt": "2026-09-16"
+      },
+      {
+        "url": "https://www.sramanamitra.com/?p=130260",
+        "title": "Sramana Mitra — kurucu röportajı",
+        "supports": [
+          "Türk kurucu"
+        ],
+        "summary": "Kurucu röportajı Tank’ı açıkça Türk girişimci olarak tanımlıyor.",
+        "checkedAt": "2026-09-16"
+      }
+    ]
+  },
+  {
+    "id": "lovie",
+    "name": "Lovie",
+    "website": "https://www.lovie.co",
+    "people": [
+      {
+        "name": "Şahin Boydaş",
+        "role": "kurucu"
+      }
+    ],
+    "headquarters": "San Francisco, ABD",
+    "connection": {
+      "turkishFounder": true,
+      "turkeyHeadquartered": false,
+      "turkeyOperations": null,
+      "makerTurkeyLink": null
+    },
+    "status": "dogrulandi",
+    "evidence": [
+      {
+        "url": "https://www.producthunt.com/products/lovie-the-ai-native-formation-mcp",
+        "title": "Product Hunt — Lovie",
+        "supports": [
+          "kurucu rolü",
+          "şirket merkezi"
+        ],
+        "summary": "Şahin Boydaş kendini tek kurucu olarak tanıtıyor ve merkezi San Francisco olarak belirtiyor.",
+        "checkedAt": "2026-09-16"
+      },
+      {
+        "url": "https://www.turkishvc.org/p/a-first-for-trvc-our-debut-turkish",
+        "title": "Turkish VC — röportaj",
+        "supports": [
+          "Türk kurucu"
+        ],
+        "summary": "Yayıncı Boydaş’ı açıkça Türk-Amerikalı girişimci olarak tanımlıyor.",
+        "checkedAt": "2026-09-16"
+      }
+    ]
+  },
+  {
+    "id": "opticlear",
+    "name": "OptiClear",
+    "website": null,
+    "people": [
+      {
+        "name": "Orhan Kilic",
+        "role": "maker"
+      }
+    ],
+    "headquarters": null,
+    "connection": {
+      "turkishFounder": null,
+      "turkeyHeadquartered": null,
+      "turkeyOperations": null,
+      "makerTurkeyLink": true
+    },
+    "status": "kismi",
+    "evidence": [
+      {
+        "url": "https://www.producthunt.com/products/opticlear-storage-cleaner",
+        "title": "Product Hunt — OptiClear",
+        "supports": [
+          "maker’ın Türkiye bağlantısı"
+        ],
+        "summary": "Maker’ın doğrudan beyanı: “I’m Orhan, a solo dev from Turkey.” Şirket merkezi veya vatandaşlık kanıtı değildir.",
+        "checkedAt": "2026-09-16"
+      }
+    ]
+  }
+]

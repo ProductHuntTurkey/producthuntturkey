@@ -1,0 +1,214 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Girişimini Ekle" description="Product Hunt lansmanını Product Hunt Turkey listesine öner.">
+  <div class="layout">
+    <section class="intro">
+      <h1>Girişimini ekle</h1>
+      <p class="lede">
+        Product Hunt’ta lansman yaptıysan ya da yapacaksan listeye öner. Her başvuruyu yayınlamadan önce kaynaklarıyla kontrol
+        ediyoruz.
+      </p>
+      <p class="muted">
+        Türkiye bağlantısını gösteren en az bir herkese açık kaynak ekle: şirket sitesinin “hakkımızda” sayfası, bir röportaj
+        ya da Product Hunt’taki maker yorumu gibi. Neyi kanıt saydığımızı <a href="/yontem/">yöntem sayfasında</a> anlattık.
+      </p>
+    </section>
+
+    <form
+      class="card form"
+      name="girisim-basvurusu"
+      method="POST"
+      action="/tesekkurler/"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+    >
+      <input type="hidden" name="form-name" value="girisim-basvurusu" />
+      <p hidden>
+        <label>Bu alanı boş bırak <input name="bot-field" /></label>
+      </p>
+
+      <fieldset>
+        <legend>Ürün</legend>
+        <div class="field">
+          <label for="urun">Ürün adı</label>
+          <input id="urun" name="urun_adi" required maxlength="80" />
+        </div>
+        <div class="field">
+          <label for="ph">Product Hunt bağlantısı</label>
+          <input
+            id="ph"
+            name="product_hunt_url"
+            type="url"
+            required
+            pattern="https://(www\.)?producthunt\.com/.+"
+            placeholder="https://www.producthunt.com/products/…"
+          />
+        </div>
+        <div class="field">
+          <label for="tanitim">Kısa tanıtım <span class="opt">(en fazla 160 karakter, Türkçe)</span></label>
+          <textarea id="tanitim" name="kisa_tanitim" required maxlength="160" rows="3"></textarea>
+        </div>
+        <div class="field">
+          <label for="tarih">Lansman tarihi</label>
+          <input id="tarih" name="lansman_tarihi" type="date" required />
+          <p class="help">Product Hunt günleri Pasifik saatine (PT) göre başlar.</p>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Kurucu ve şirket</legend>
+        <div class="row">
+          <div class="field">
+            <label for="kisi">Adın</label>
+            <input id="kisi" name="kisi_adi" required autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="rol">Rolün</label>
+            <select id="rol" name="kisi_rolu" required>
+              <option value="">Seç</option>
+              <option>Kurucu</option>
+              <option>Maker</option>
+              <option>Ekip üyesi</option>
+              <option>Diğer</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="merkez">Şirket merkezi <span class="opt">(şehir, ülke)</span></label>
+          <input id="merkez" name="sirket_merkezi" placeholder="Örn. İstanbul, Türkiye" />
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Türkiye bağlantısı</legend>
+        <p class="help">Geçerli olanların hepsini işaretle.</p>
+        <label class="check"><input type="checkbox" name="baglanti" value="Türk kurucu" /> Kurucu Türk ya da Türk kökenli</label>
+        <label class="check"><input type="checkbox" name="baglanti" value="Merkez Türkiye" /> Şirket merkezi Türkiye’de</label>
+        <label class="check"><input type="checkbox" name="baglanti" value="Türkiye operasyonu" /> Türkiye’de ofis ya da ekip var</label>
+        <label class="check"><input type="checkbox" name="baglanti" value="Maker Türkiye" /> Maker Türkiye’den</label>
+        <div class="field">
+          <label for="kanit">Kaynak bağlantısı</label>
+          <input id="kanit" name="kanit_url" type="url" required placeholder="https://…" />
+          <p class="help">Bağlantıyı herkese açık olarak gösteren bir sayfa.</p>
+        </div>
+        <div class="field">
+          <label for="kanit2">Başka kaynaklar ya da açıklama <span class="opt">(isteğe bağlı)</span></label>
+          <textarea id="kanit2" name="kanit_aciklama" rows="3"></textarea>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>İletişim</legend>
+        <div class="field">
+          <label for="eposta">E-posta</label>
+          <input id="eposta" name="eposta" type="email" required autocomplete="email" />
+          <p class="help">Yalnızca başvurunla ilgili soru sormak için kullanılır, sitede yayınlanmaz.</p>
+        </div>
+      </fieldset>
+
+      <button class="btn btn-primary" type="submit">Başvuruyu gönder</button>
+    </form>
+  </div>
+</Base>
+
+<style>
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+    gap: 32px;
+    align-items: start;
+  }
+  .intro {
+    position: sticky;
+    top: 24px;
+  }
+  .form {
+    padding: 24px;
+    display: grid;
+    gap: 20px;
+  }
+  fieldset {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 14px;
+  }
+  legend {
+    font-weight: 800;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    padding: 0;
+  }
+  .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  label {
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+  .opt {
+    font-weight: 400;
+    color: var(--muted);
+  }
+  input:not([type='checkbox']),
+  select,
+  textarea {
+    font: inherit;
+    color: var(--ink);
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 9px 11px;
+    min-height: 42px;
+    width: 100%;
+  }
+  textarea {
+    resize: vertical;
+  }
+  .check {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-weight: 600;
+  }
+  .check input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--ink);
+  }
+  .help {
+    margin: 0;
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+  button[type='submit'] {
+    justify-self: start;
+    min-height: 46px;
+    padding: 10px 22px;
+  }
+  @media (max-width: 800px) {
+    .layout {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .intro {
+      position: static;
+    }
+    .row {
+      grid-template-columns: 1fr;
+    }
+    .form {
+      padding: 18px;
+    }
+  }
+</style>

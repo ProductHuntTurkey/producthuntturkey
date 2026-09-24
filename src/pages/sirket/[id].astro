@@ -1,0 +1,58 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Connection from '../../components/Connection.astro';
+import LaunchCard from '../../components/LaunchCard.astro';
+import { sortLaunches } from '../../lib/format';
+
+export async function getStaticPaths() {
+  const companies = await getCollection('companies');
+  return companies.map((company) => ({ params: { id: company.id }, props: { company } }));
+}
+
+interface Props {
+  company: CollectionEntry<'companies'>;
+}
+
+const { company } = Astro.props;
+const c = company.data;
+const launches = sortLaunches(await getCollection('launches', (l) => l.data.company?.id === company.id));
+---
+
+<Base title={c.name} description={`${c.name}: Türkiye bağlantısı, kaynakları ve Product Hunt lansmanları.`}>
+  <a class="back" href="/">← Tüm lansmanlar</a>
+
+  <h1>{c.name}</h1>
+  {
+    c.website && (
+      <p>
+        <a href={c.website} target="_blank" rel="noopener noreferrer">
+          {c.website.replace(/^https?:\/\/(www\.)?/, '')} ↗
+        </a>
+      </p>
+    )
+  }
+
+  <Connection company={company} />
+
+  <section class="launches">
+    <h2>Lansmanlar ({launches.length})</h2>
+    <p class="muted">Aynı şirketin farklı lansmanları ayrı kayıtlardır; şirket sayısına bir kez eklenir.</p>
+    <ul>
+      {launches.map((l) => <LaunchCard launch={l} company={company} />)}
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .launches {
+    margin-top: 32px;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+  }
+</style>

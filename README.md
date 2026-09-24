@@ -1,42 +1,50 @@
-![Product Hunt Turkey](https://github.com/ProductHuntTurkey/producthuntturkey.github.io/blob/development/readme.jpg)
+![Product Hunt Turkey](readme.jpg)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/2db1759d-ec93-4184-955d-3ef02eac00b9/deploy-status)](https://app.netlify.com/sites/producthuntturkey/deploys)
 
-[Product Hunt Turkey](https://producthuntturkey.github.io/), Türkiye’den global pazara açılan/açılmak isteyen girişimlere destek olmak ve onları desteklemek isteyenleri bir araya getirmeyi amaçlayan bir oluşumdur.
+[Product Hunt Turkey](https://producthuntturkey.netlify.app/), Product Hunt’ta lansman yapan Türkiye bağlantılı girişimleri, bu bağlantının kaynaklarıyla birlikte listeleyen açık kaynaklı bir topluluk projesidir.
 
 ## Kullanılan teknolojiler
 
-* <a href="https://www.gatsbyjs.org/" target="_blank">GatsbyJS</a>
-* <a href="https://github.com/facebook/react" target="_blank">ReactJS</a>
-* <a href="https://www.json.org/json-tr.html" target="_blank">JSON</a>
+* [Astro](https://astro.build/) — statik site, içerik koleksiyonları
+* JSON veri dosyaları + Zod şeması
 
-Kurulum
--------------------
+## Kurulum
 
-Projeyi klonla;
+Node.js 22.12 veya üstü gerekir (`.nvmrc`).
 
 	git clone https://github.com/ProductHuntTurkey/producthuntturkey.git
 	cd producthuntturkey
-
-Gatsby-cli kur;
-
-	npm install -g gatsby-cli
-
-Bağımlı olunan paketleri kur;
-
 	npm install
+	npm run dev
 
-Projeyi ayağa kaldır;
+Diğer komutlar: `npm run build` (çıktı `dist/`), `npm run preview`, `npm run check` (tip ve şema kontrolü).
 
-	gatsby develop
+## Veri
 
-### Telegram Kanalımız: <a href="https://t.me/producthuntturkey" target="_blank">https://t.me/producthuntturkey</a>
-### Mail Listemiz: <a href="https://producthuntturkey.substack.com/" target="_blank">https://producthuntturkey.substack.com/</a>
+Bütün içerik iki dosyada:
 
+* `src/data/companies.json` — Türkiye bağlantısı kaynaklarla gösterilmiş şirketler. Bağlantı dört ayrı alanda tutulur (`turkishFounder`, `turkeyHeadquartered`, `turkeyOperations`, `makerTurkeyLink`); bilinmeyen değer `null`’dır, asla `false` değildir. Her şirketin en az bir kaynağı (`evidence`) vardır.
+* `src/data/launches.json` — Product Hunt lansmanları. `company` alanı boşsa kayıt “Arşiv — doğrulanmadı” olarak gösterilir. Kesin gün bilinmiyorsa `launchDate: null`, `datePrecision: "year"` kullanılır.
+
+Şema `src/content.config.ts` içinde; hatalı bir kayıt derlemeyi durdurur. Hangi bilginin kanıt sayıldığı sitedeki [Yöntem](https://producthuntturkey.netlify.app/yontem/) sayfasında anlatılıyor.
+
+Görseller `public/images/` altında.
+
+## Başvurular
+
+“Girişimini ekle” formu Netlify Forms ile çalışır; başvurular Netlify panelindeki **Forms** bölümüne düşer. Bir başvuru, kaynakları kontrol edilmeden `launches.json`’a eklenmez.
+
+## Topluluk
+
+* Telegram: <https://t.me/producthuntturkey>
+* Mail listesi: <https://producthuntturkey.substack.com/>
 
 ## Sen de katkıda bulun
-Product Hunt Turkey tamamen açık kaynak olarak geliştirilmektedir. Siz de bizlere öneri ya da şikayetlerinizi [bildirebilir](https://github.com/ProductHuntTurkey/producthuntturkey.github.io/issues), yapacağınız geliştirmeler ile proye katkıda bulunabilirsiniz.
+
+Öneri, düzeltme ya da eksik bir kaynak için [issue açabilir](https://github.com/ProductHuntTurkey/producthuntturkey/issues) veya pull request gönderebilirsin.
 
 ## Katkıda bulunanlar
-* <a href="https://github.com/mrabdullahsahin" target="_blank">Abdullah ŞAHİN</a>
-* <a href="https://github.com/ubeydgencer" target="_blank">Ubeyd GENCER</a>
+
+* [Abdullah ŞAHİN](https://github.com/mrabdullahsahin)
+* [Ubeyd GENCER](https://github.com/ubeydgencer)

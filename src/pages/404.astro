@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Sayfa bulunamadı">
+  <div class="nf">
+    <p class="code">404</p>
+    <h1>Aradığın sayfa burada değil</h1>
+    <p class="lede">
+      Uzaya çıkabiliyor, yeni gezegenler keşfedebiliyoruz ama bu sayfayı hâlâ bulamıyoruz.
+    </p>
+    <a class="btn btn-primary" href="/">Ana sayfaya dön</a>
+  </div>
+</Base>
+
+<style>
+  .nf {
+    max-width: 620px;
+    padding: 48px 0;
+  }
+  .code {
+    font-size: 4rem;
+    font-weight: 800;
+    margin: 0;
+    line-height: 1;
+  }
+</style>

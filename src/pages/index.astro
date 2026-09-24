@@ -1,0 +1,198 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import LaunchCard from '../components/LaunchCard.astro';
+import { connectionFields, launchStatus, sortLaunches, statusLabels, type Status } from '../lib/format';
+
+const launches = sortLaunches(await getCollection('launches'));
+const companies = new Map((await getCollection('companies')).map((c) => [c.id, c]));
+const companyOf = (l: (typeof launches)[number]) => (l.data.company ? companies.get(l.data.company.id) : undefined);
+
+const years = [...new Set(launches.map((l) => l.data.launchYear))].sort((a, b) => b - a);
+const statusCounts = launches.reduce(
+  (acc, l) => {
+    acc[launchStatus(companyOf(l)?.data)]++;
+    return acc;
+  },
+  { dogrulandi: 0, kismi: 0, arsiv: 0 } as Record<Status, number>,
+);
+---
+
+<Base title="Ana Sayfa">
+  <section class="hero">
+    <h1>Product Hunt’taki Türkiye bağlantılı girişimler</h1>
+    <p class="lede">
+      Türk kuruculu, Türkiye merkezli ya da Türkiye’de ekibi olan girişimlerin Product Hunt lansmanları. Her kaydın neden
+      listede olduğu kaynaklarıyla birlikte gösterilir.{' '}
+      <a href="/yontem/">Nasıl doğruluyoruz?</a>
+    </p>
+  </section>
+
+  <form class="filters card" id="filters" role="search" hidden>
+    <div class="field grow">
+      <label for="q">Ara</label>
+      <input id="q" type="search" placeholder="Ürün, şirket ya da kurucu adı" autocomplete="off" />
+    </div>
+    <div class="field">
+      <label for="year">Yıl</label>
+      <select id="year">
+        <option value="">Tümü</option>
+        {years.map((y) => <option value={y}>{y}</option>)}
+      </select>
+    </div>
+    <div class="field">
+      <label for="status">Durum</label>
+      <select id="status">
+        <option value="">Tümü</option>
+        {
+          (Object.keys(statusLabels) as Status[]).map((s) => (
+            <option value={s}>
+              {statusLabels[s]} ({statusCounts[s]})
+            </option>
+          ))
+        }
+      </select>
+    </div>
+    <div class="field">
+      <label for="connection">Türkiye bağlantısı</label>
+      <select id="connection">
+        <option value="">Tümü</option>
+        {connectionFields.map((f) => <option value={f.key}>{f.label}</option>)}
+      </select>
+    </div>
+  </form>
+
+  <p class="count muted" id="count" aria-live="polite">{launches.length} lansman</p>
+
+  <ul class="list" id="list">
+    {launches.map((l) => <LaunchCard launch={l} company={companyOf(l)} />)}
+  </ul>
+  <p class="empty muted" id="empty" hidden>
+    Bu filtrelerle eşleşen lansman yok. <button type="button" class="linkish" id="reset">Filtreleri temizle</button>
+  </p>
+</Base>
+
+<script>
+  const form = document.getElementById('filters') as HTMLFormElement;
+  const q = document.getElementById('q') as HTMLInputElement;
+  const year = document.getElementById('year') as HTMLSelectElement;
+  const status = document.getElementById('status') as HTMLSelectElement;
+  const connection = document.getElementById('connection') as HTMLSelectElement;
+  const count = document.getElementById('count')!;
+  const empty = document.getElementById('empty')!;
+  const items = [...document.querySelectorAll<HTMLLIElement>('#list > li')];
+
+  form.hidden = false;
+
+  const params = new URLSearchParams(location.search);
+  q.value = params.get('q') ?? '';
+  year.value = params.get('yil') ?? '';
+  status.value = params.get('durum') ?? '';
+  connection.value = params.get('baglanti') ?? '';
+
+  function apply() {
+    const term = q.value.trim().toLocaleLowerCase('tr');
+    let shown = 0;
+    for (const li of items) {
+      const d = li.dataset;
+      const match =
+        (!term || d.search!.includes(term)) &&
+        (!year.value || d.year === year.value) &&
+        (!status.value || d.status === status.value) &&
+        (!connection.value || d.connection!.split(' ').includes(connection.value));
+      li.hidden = !match;
+      if (match) shown++;
+    }
+    count.textContent = shown === items.length ? `${items.length} lansman` : `${shown} / ${items.length} lansman`;
+    empty.hidden = shown > 0;
+
+    const next = new URLSearchParams();
+    if (q.value.trim()) next.set('q', q.value.trim());
+    if (year.value) next.set('yil', year.value);
+    if (status.value) next.set('durum', status.value);
+    if (connection.value) next.set('baglanti', connection.value);
+    const qs = next.toString();
+    history.replaceState(null, '', qs ? `?${qs}` : location.pathname);
+  }
+
+  form.addEventListener('input', apply);
+  form.addEventListener('submit', (e) => e.preventDefault());
+  document.getElementById('reset')!.addEventListener('click', () => {
+    form.reset();
+    apply();
+  });
+  apply();
+</script>
+
+<style>
+  .hero {
+    margin-bottom: 28px;
+  }
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 150px;
+    flex: 1 1 150px;
+  }
+  .field.grow {
+    flex: 3 1 260px;
+  }
+  @media (max-width: 640px) {
+    .filters {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 12px;
+    }
+    .field {
+      min-width: 0;
+    }
+    .field.grow {
+      grid-column: 1 / -1;
+    }
+  }
+  label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--muted);
+  }
+  input,
+  select {
+    font: inherit;
+    color: var(--ink);
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 8px 10px;
+    min-height: 40px;
+    width: 100%;
+  }
+  .count {
+    margin: 0 0 12px;
+    font-size: 0.95rem;
+  }
+  .list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+  }
+  .linkish {
+    font: inherit;
+    background: none;
+    border: 0;
+    padding: 0;
+    color: var(--ink);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+</style>
