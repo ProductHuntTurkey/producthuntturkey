@@ -1,0 +1,153 @@
+---
+import { getCollection, getEntry, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Connection from '../../components/Connection.astro';
+import { launchDateLabel, statusHints, statusLabels } from '../../lib/format';
+
+export async function getStaticPaths() {
+  const launches = await getCollection('launches');
+  return launches.map((launch) => ({ params: { id: launch.id }, props: { launch } }));
+}
+
+interface Props {
+  launch: CollectionEntry<'launches'>;
+}
+
+const { launch } = Astro.props;
+const l = launch.data;
+const company = l.company ? await getEntry(l.company) : undefined;
+---
+
+<Base title={l.name} description={l.description ?? `${l.name} — Product Hunt lansmanı`}>
+  <a class="back" href="/">← Tüm lansmanlar</a>
+
+  <article>
+    <header class="top">
+      {l.image && <img class="logo" src={l.image} alt="" width="96" height="96" />}
+      <div>
+        <h1>{l.name}</h1>
+        {l.description && <p class="lede">{l.description}</p>}
+        {l.phUrl && (
+          <a class="btn btn-primary" href={l.phUrl} target="_blank" rel="noopener noreferrer">
+            Product Hunt’ta destekle ↗
+          </a>
+        )}
+      </div>
+    </header>
+
+    <dl class="facts card">
+      <div>
+        <dt>Lansman</dt>
+        <dd>{launchDateLabel(l)}</dd>
+      </div>
+      {
+        company && (
+          <div>
+            <dt>Şirket</dt>
+            <dd>
+              <a href={`/sirket/${company.id}/`}>{company.data.name}</a>
+            </dd>
+          </div>
+        )
+      }
+      {
+        l.dailyRankObserved !== null && (
+          <div>
+            <dt>Gözlenen günlük sıra</dt>
+            <dd>#{l.dailyRankObserved}</dd>
+          </div>
+        )
+      }
+      <div>
+        <dt>Kayıt kaynağı</dt>
+        <dd>{l.origin === 'arsiv' ? '2018–2020 arşivi' : 'Eylül 2026 pilot araştırması'}</dd>
+      </div>
+    </dl>
+
+    {l.notes && <p class="note">{l.notes}</p>}
+    {
+      l.dailyRankObserved !== null && (
+        <p class="muted small">
+          Sıra, araştırma sırasında sayfada görülen değerdir; canlı veya kesin lansman günü ölçümü değildir.
+        </p>
+      )
+    }
+
+    {
+      company ? (
+        <Connection company={company} />
+      ) : (
+        <section class="card archive">
+          <h2>Türkiye bağlantısı</h2>
+          <p>
+            <span class="badge badge-arsiv">{statusLabels.arsiv}</span>
+          </p>
+          <p class="muted">
+            {statusHints.arsiv} Bu kaydın kurucu, merkez veya ekip bilgisi kaynaklarla henüz eşleştirilmedi. Bilgin varsa{' '}
+            <a href="https://github.com/ProductHuntTurkey/producthuntturkey/issues" target="_blank" rel="noopener noreferrer">
+              kaynağıyla bildir
+            </a>
+            .
+          </p>
+        </section>
+      )
+    }
+  </article>
+</Base>
+
+<style>
+  .top {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    margin-bottom: 24px;
+  }
+  .logo {
+    width: 96px;
+    height: 96px;
+    border-radius: 14px;
+    object-fit: cover;
+    flex-shrink: 0;
+    background: var(--surface-2);
+  }
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    padding: 16px 20px;
+    margin: 0;
+  }
+  dt {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--muted);
+  }
+  dd {
+    margin: 0;
+    font-weight: 600;
+  }
+  .note {
+    margin-top: 16px;
+    padding: 10px 14px;
+    border-left: 3px solid var(--partial);
+    background: var(--partial-bg);
+    border-radius: 6px;
+  }
+  .small {
+    font-size: 0.88rem;
+    margin-top: 12px;
+  }
+  .archive {
+    padding: 20px;
+    margin-top: 24px;
+  }
+  @media (max-width: 640px) {
+    .top {
+      flex-direction: column;
+    }
+    .logo {
+      width: 72px;
+      height: 72px;
+    }
+  }
+</style>

@@ -1,0 +1,51 @@
+name: Product Hunt senkronizasyonu
+
+# Haftada bir çalışır; bağlantıları yavaşça kontrol eder, PH_TOKEN varsa son 7 günün
+# adaylarını toplar ve değişiklikleri inceleme için PR olarak açar. Siteye doğrudan
+# hiçbir şey yayınlamaz.
+on:
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+    inputs:
+      days:
+        description: Kaç günlük aday taransın
+        default: '7'
+
+concurrency:
+  group: ph-sync
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Bağlantıları kontrol et
+        run: node scripts/ph-sync.mjs links | tee links.log
+
+      - name: Adayları topla
+        env:
+          PH_TOKEN: ${{ secrets.PH_TOKEN }}
+        run: node scripts/ph-sync.mjs candidates --days "${{ inputs.days || '7' }}" | tee candidates.log
+
+      - name: PR aç
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: otomatik/ph-sync
+          add-paths: data/
+          commit-message: 'Product Hunt senkronizasyonu'
+          title: 'Product Hunt senkronizasyonu'
+          body-path: links.log
+          labels: otomatik
+          delete-branch: true

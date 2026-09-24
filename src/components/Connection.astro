@@ -1,0 +1,109 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { connectionFields, connectionValue, formatDate, statusHints, statusLabels } from '../lib/format';
+
+interface Props {
+  company: CollectionEntry<'companies'>;
+}
+
+const c = Astro.props.company.data;
+---
+
+<section class="card box">
+  <div class="head">
+    <h2>Türkiye bağlantısı</h2>
+    <span class={`badge badge-${c.status}`}>{statusLabels[c.status]}</span>
+  </div>
+  <p class="muted">{statusHints[c.status]} “Bilinmiyor”, kaynak bulunamadığı anlamına gelir; bağlantı olmadığı anlamına gelmez.</p>
+
+  <div class="table-wrap">
+    <table>
+      <tbody>
+        {
+          connectionFields.map((f) => (
+            <tr>
+              <th scope="row">{f.label}</th>
+              <td class={`v v-${String(c.connection[f.key])}`}>{connectionValue(c.connection[f.key])}</td>
+            </tr>
+          ))
+        }
+        <tr>
+          <th scope="row">Şirket merkezi</th>
+          <td>{c.headquarters ?? 'Bilinmiyor'}</td>
+        </tr>
+        {
+          c.people.map((p) => (
+            <tr>
+              <th scope="row">{p.role === 'kurucu' ? 'Kurucu' : 'Maker'}</th>
+              <td>{p.name}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Kaynaklar</h3>
+  <ol class="evidence">
+    {
+      c.evidence.map((e) => (
+        <li>
+          <a href={e.url} target="_blank" rel="noopener noreferrer">
+            {e.title}
+          </a>
+          <p>{e.summary}</p>
+          <p class="small muted">
+            Dayanak: {e.supports.join(', ')} · Kontrol: {formatDate(e.checkedAt)}
+          </p>
+        </li>
+      ))
+    }
+  </ol>
+</section>
+
+<style>
+  .box {
+    padding: 20px;
+    margin-top: 24px;
+  }
+  .head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  .head h2 {
+    margin: 0;
+  }
+  th {
+    width: 45%;
+  }
+  .v-true {
+    color: var(--ok);
+    font-weight: 700;
+  }
+  .v-null {
+    color: var(--muted);
+  }
+  h3 {
+    font-size: 1.05rem;
+    margin-top: 20px;
+  }
+  .evidence {
+    margin: 0;
+    padding-left: 20px;
+    display: grid;
+    gap: 12px;
+  }
+  .evidence a {
+    font-weight: 700;
+  }
+  .evidence p {
+    margin: 2px 0 0;
+  }
+  .small {
+    font-size: 0.88rem;
+  }
+</style>

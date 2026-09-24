@@ -1,0 +1,100 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Yöntem" description="Product Hunt Turkey bir girişimin Türkiye bağlantısını nasıl doğruluyor?">
+  <article class="prose">
+    <h1>Türkiye bağlantısını nasıl doğruluyoruz?</h1>
+    <p class="lede">
+      “Türk girişimi” tek bir şey değil. Merkezi San Francisco’da olup Türkiye’de yüzlerce kişi çalıştıran bir şirket de,
+      İstanbul’dan tek başına ürün geliştiren biri de bu listede yer alabilir. Bu yüzden bağlantıyı tek bir etiketle değil,
+      ayrı ayrı alanlarla ve her alanın kaynağıyla tutuyoruz.
+    </p>
+
+    <h2>Dört ayrı bağlantı alanı</h2>
+    <div class="table-wrap card">
+      <table>
+        <thead>
+          <tr><th>Alan</th><th>Ne zaman “Evet” olur?</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Türk kurucu</td><td>Kurucu, güvenilir bir kaynakta açıkça Türk ya da Türk kökenli olarak tanımlandığında.</td></tr>
+          <tr><td>Merkez Türkiye’de</td><td>Şirketin kendi sayfası veya resmi kayıt merkezin Türkiye’de olduğunu belirttiğinde.</td></tr>
+          <tr><td>Türkiye’de operasyon</td><td>Şirketin Türkiye’de ofisi ya da ekibi olduğu kaynakla gösterildiğinde.</td></tr>
+          <tr><td>Maker’ın Türkiye bağlantısı</td><td>Ürünü yapan kişi Türkiye’den olduğunu kendisi açıkça söylediğinde.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      Kaynak bulunamayan alan <strong>“Bilinmiyor”</strong> olarak kalır. Bilinmiyor, “hayır” demek değildir; yalnızca henüz
+      kanıt olmadığını gösterir.
+    </p>
+
+    <h2>Kayıt durumları</h2>
+    <ul class="states">
+      <li><span class="badge badge-dogrulandi">Doğrulandı</span> Türkiye bağlantısı kaynaklarla gösterildi ve sınıflama tamamlandı.</li>
+      <li><span class="badge badge-kismi">Kısmen doğrulandı</span> En az bir bağlantı kaynakla gösterildi, diğer alanlar açık.</li>
+      <li><span class="badge badge-arsiv">Arşiv — doğrulanmadı</span> 2018–2020 sitesinden gelen kayıt. Bağlantı o dönemde elle değerlendirildi ama gerekçesi kaydedilmedi; yeniden kontrol bekliyor.</li>
+    </ul>
+
+    <h2>Kurallar</h2>
+    <ol>
+      <li>Her alanın bir kaynak adresi, kısa bir dayanağı ve kontrol tarihi vardır.</li>
+      <li>
+        İsim, Türkçe dil desteği, <code>.tr</code> alan adı ya da Türkiye pazarına hitap etmek tek başına yeterli değildir.
+        Bunlar yalnızca aday bulmaya yarar. Kimsenin milliyeti isminden çıkarılmaz.
+      </li>
+      <li>Türkiye’de yaşamak tek başına “Türk kurucu” ya da “Merkez Türkiye’de” anlamına gelmez.</li>
+      <li>Aynı bilginin şirket sitesinde ve LinkedIn’de tekrarı iki ayrı kanıt sayılmaz.</li>
+      <li>Ürün, şirket ve lansman ayrı kayıtlardır. Bir şirketin on lansmanı, on şirket demek değildir.</li>
+      <li>Kesin lansman günü bilinmiyorsa uydurulmaz; yalnızca yıl gösterilir.</li>
+      <li>Oy ve sıra değerleri, görüldükleri anın ölçümüdür. Canlı veri gibi sunulmaz.</li>
+      <li>Bir başvuru, kaynakları kontrol edilmeden listeye eklenmez.</li>
+    </ol>
+
+    <h2>Adaylar nereden geliyor?</h2>
+    <ul>
+      <li><a href="/girisimini-ekle/">Başvuru formu</a> üzerinden gelen öneriler.</li>
+      <li>Türkiye ekosisteminde bilinen şirketlerin Product Hunt sayfalarının taranması.</li>
+      <li>
+        İleride: Product Hunt API’sinden tarih aralığıyla çekilen lansmanların maker ve ürün sitesi bilgisine göre aday
+        kuyruğuna alınması. Otomatik bulunan adaylar da yayınlanmadan önce elle doğrulanır.
+      </li>
+    </ul>
+
+    <h2>Bir hata mı gördün?</h2>
+    <p>
+      Yanlış ya da eksik bir bilgi için kaynağıyla birlikte
+      <a href="https://github.com/ProductHuntTurkey/producthuntturkey/issues" target="_blank" rel="noopener noreferrer">GitHub’da bildir</a>.
+      Veri dosyaları depoda açık: <code>src/data/companies.json</code> ve <code>src/data/launches.json</code>.
+    </p>
+  </article>
+</Base>
+
+<style>
+  .prose {
+    max-width: 760px;
+  }
+  .prose h2 {
+    margin-top: 2em;
+  }
+  .prose li {
+    margin-bottom: 0.5em;
+  }
+  .prose .table-wrap {
+    margin-bottom: 1em;
+  }
+  .states {
+    list-style: none;
+    padding: 0;
+  }
+  .states .badge {
+    margin-right: 8px;
+  }
+  code {
+    font-size: 0.9em;
+    background: var(--surface-2);
+    padding: 1px 5px;
+    border-radius: 4px;
+  }
+</style>

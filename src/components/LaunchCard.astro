@@ -1,0 +1,130 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { connectionKeys, launchDateLabel, launchStatus, statusLabels } from '../lib/format';
+
+interface Props {
+  launch: CollectionEntry<'launches'>;
+  company?: CollectionEntry<'companies'>;
+}
+
+const { launch, company } = Astro.props;
+const l = launch.data;
+const status = launchStatus(company?.data);
+const searchText = [l.name, l.description, company?.data.name, ...(company?.data.people.map((p) => p.name) ?? [])]
+  .filter(Boolean)
+  .join(' ')
+  .toLocaleLowerCase('tr');
+---
+
+<li
+  class="launch card"
+  data-search={searchText}
+  data-year={l.launchYear}
+  data-status={status}
+  data-connection={connectionKeys(company?.data).join(' ')}
+>
+  {
+    l.image ? (
+      <img class="thumb" src={l.image} alt="" width="72" height="72" loading="lazy" decoding="async" />
+    ) : (
+      <span class="thumb thumb-empty" aria-hidden="true">
+        {l.name.charAt(0)}
+      </span>
+    )
+  }
+  <div class="body">
+    <h3><a href={`/urun/${launch.id}/`}>{l.name}</a></h3>
+    {l.description && <p class="desc">{l.description}</p>}
+    <p class="meta">
+      <time datetime={l.launchDate ?? String(l.launchYear)}>{launchDateLabel(l)}</time>
+      {
+        company && (
+          <>
+            <span aria-hidden="true">·</span>
+            <a href={`/sirket/${company.id}/`}>{company.data.name}</a>
+          </>
+        )
+      }
+      <span class={`badge badge-${status}`}>{statusLabels[status]}</span>
+    </p>
+  </div>
+  {
+    l.phUrl && (
+      <a class="btn ph" href={l.phUrl} target="_blank" rel="noopener noreferrer">
+        Destekle<span class="sr"> — {l.name} Product Hunt sayfası</span>
+      </a>
+    )
+  }
+</li>
+
+<style>
+  .launch {
+    display: grid;
+    grid-template-columns: 72px 1fr auto;
+    gap: 16px;
+    align-items: center;
+    padding: 16px;
+  }
+  .thumb {
+    width: 72px;
+    height: 72px;
+    border-radius: 10px;
+    object-fit: cover;
+    background: var(--surface-2);
+  }
+  .thumb-empty {
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    font-size: 1.6rem;
+    color: var(--muted);
+  }
+  h3 {
+    font-size: 1.1rem;
+    margin: 0 0 2px;
+  }
+  h3 a {
+    text-decoration: none;
+  }
+  h3 a:hover {
+    text-decoration: underline;
+  }
+  .desc {
+    margin: 0 0 6px;
+    color: var(--muted);
+  }
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 8px;
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+  .meta a:hover {
+    color: var(--ink);
+  }
+  .sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  @media (max-width: 640px) {
+    .launch {
+      grid-template-columns: 56px 1fr;
+      gap: 12px;
+    }
+    .thumb {
+      width: 56px;
+      height: 56px;
+    }
+    .ph {
+      grid-column: 2;
+      justify-self: start;
+    }
+  }
+</style>

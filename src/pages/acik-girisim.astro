@@ -1,0 +1,133 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+const launches = await getCollection('launches');
+const companies = await getCollection('companies');
+
+const archive = launches.filter((l) => l.data.origin === 'arsiv' && !l.data.company).length;
+const linked = launches.length - archive;
+const verified = companies.filter((c) => c.data.status === 'dogrulandi').length;
+const partial = companies.length - verified;
+
+const byYear = Object.entries(
+  launches.reduce<Record<number, number>>((acc, l) => {
+    acc[l.data.launchYear] = (acc[l.data.launchYear] ?? 0) + 1;
+    return acc;
+  }, {}),
+).sort(([a], [b]) => Number(b) - Number(a));
+const maxYear = Math.max(...byYear.map(([, n]) => n));
+
+const metrics = [
+  { label: 'Toplam lansman', value: launches.length, hint: 'Aynı şirketin birden fazla lansmanı ayrı sayılır.' },
+  { label: 'Kaynaklı şirket', value: companies.length, hint: `${verified} doğrulandı, ${partial} kısmen.` },
+  { label: 'Kaynaklı şirketlerin lansmanları', value: linked, hint: 'Türkiye bağlantısı kaynakla gösterilen şirketlere ait.' },
+  { label: 'Doğrulama bekleyen arşiv', value: archive, hint: '2018–2020 listesinden; gerekçesi kaydedilmemiş.' },
+];
+---
+
+<Base title="Açık Girişim" description="Product Hunt Turkey’in açık metrikleri.">
+  <h1>Açık Girişim</h1>
+  <p class="lede">Bu sayılar her derlemede veri dosyalarından yeniden hesaplanır; elle yazılmış değer yoktur.</p>
+
+  <div class="metrics">
+    {
+      metrics.map((m) => (
+        <div class="metric card">
+          <p class="label">{m.label}</p>
+          <p class="value">{m.value}</p>
+          <p class="hint muted">{m.hint}</p>
+        </div>
+      ))
+    }
+  </div>
+
+  <section class="card years">
+    <h2>Yıllara göre lansman</h2>
+    <p class="muted small">2021–2024 arası boşluk o dönemde listenin güncellenmemesinden kaynaklanır, lansman olmadığını göstermez.</p>
+    <ul>
+      {
+        byYear.map(([y, n]) => (
+          <li>
+            <a href={`/?yil=${y}`}>{y}</a>
+            <span class="bar" style={`--w:${(n / maxYear) * 100}%`} aria-hidden="true" />
+            <span class="n">{n}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="community">
+    <h2>Topluluk</h2>
+    <p>
+      Yeni lansman duyuruları için <a href="https://t.me/producthuntturkey" target="_blank" rel="noopener noreferrer">Telegram kanalına</a>
+      ve <a href="https://producthuntturkey.substack.com/" target="_blank" rel="noopener noreferrer">mail listesine</a> katılabilirsin.
+    </p>
+  </section>
+</Base>
+
+<style>
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin: 24px 0;
+  }
+  .metric {
+    padding: 18px 20px;
+  }
+  .label {
+    font-weight: 700;
+    color: var(--muted);
+    margin: 0;
+    font-size: 0.95rem;
+  }
+  .value {
+    font-size: 2.4rem;
+    font-weight: 800;
+    margin: 2px 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .hint {
+    font-size: 0.88rem;
+    margin: 0;
+  }
+  .years {
+    padding: 20px;
+  }
+  .small {
+    font-size: 0.9rem;
+  }
+  .years ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 8px;
+  }
+  .years li {
+    display: grid;
+    grid-template-columns: 48px 1fr 36px;
+    align-items: center;
+    gap: 12px;
+  }
+  .years a {
+    font-weight: 700;
+  }
+  .bar {
+    height: 12px;
+    width: var(--w);
+    min-width: 4px;
+    background: var(--ink);
+    border-radius: 0 4px 4px 0;
+  }
+  .n {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    color: var(--muted);
+  }
+  .community {
+    margin-top: 32px;
+  }
+</style>

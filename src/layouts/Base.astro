@@ -1,0 +1,89 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = 'Product Hunt’ta lansman yapan, Türkiye bağlantısı kaynaklarla belirtilmiş girişimler.',
+} = Astro.props;
+const fullTitle = title === 'Ana Sayfa' ? 'Product Hunt Turkey' : `${title} | Product Hunt Turkey`;
+const path = Astro.url.pathname;
+const nav = [
+  { href: '/', label: 'Lansmanlar' },
+  { href: '/yontem/', label: 'Yöntem' },
+  { href: '/acik-girisim/', label: 'Açık Girişim' },
+];
+const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+---
+
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="icon" type="image/png" href="/logo192.png" />
+    <link rel="canonical" href={new URL(path, Astro.site)} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="skip" href="#icerik">İçeriğe geç</a>
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="brand" href="/">
+          <img src="/logo192.png" alt="" width="36" height="36" />
+          <span>Product Hunt Turkey</span>
+        </a>
+        <nav aria-label="Ana menü">
+          <ul class="nav">
+            {
+              nav.map((item) => (
+                <li>
+                  <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
+                    {item.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+        <a class="btn btn-primary cta" href="/girisimini-ekle/" aria-current={isActive('/girisimini-ekle/') ? 'page' : undefined}>
+          Girişimini ekle
+        </a>
+      </div>
+    </header>
+
+    <main id="icerik" class="wrap">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-inner">
+        <p>
+          Product Hunt Turkey açık kaynaklı bir topluluk projesidir.{' '}
+          <a href="https://github.com/ProductHuntTurkey/producthuntturkey" target="_blank" rel="noopener noreferrer">Katkıda bulun</a>
+        </p>
+        <ul class="footer-links">
+          <li><a href="https://t.me/producthuntturkey" target="_blank" rel="noopener noreferrer">Telegram</a></li>
+          <li><a href="https://producthuntturkey.substack.com/" target="_blank" rel="noopener noreferrer">Mail listesi</a></li>
+          <li><a href="https://twitter.com/mrabdullahsahin" target="_blank" rel="noopener noreferrer">@mrabdullahsahin</a></li>
+          <li><a href="https://twitter.com/ubeydgencer" target="_blank" rel="noopener noreferrer">@ubeydgencer</a></li>
+        </ul>
+      </div>
+    </footer>
+  </body>
+</html>
