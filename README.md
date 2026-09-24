@@ -35,6 +35,19 @@ Görseller `public/images/` altında.
 
 “Girişimini ekle” formu Netlify Forms ile çalışır; başvurular Netlify panelindeki **Forms** bölümüne düşer. Bir başvuru, kaynakları kontrol edilmeden `launches.json`’a eklenmez.
 
+## Product Hunt senkronizasyonu
+
+`scripts/ph-sync.mjs` Product Hunt'ın istek sınırlarına takılmadan çalışacak şekilde yazıldı: istekler sırayla ve aralıklı atılır, 30 gün içinde kontrol edilmiş bağlantılar tekrar istenmez, 429 alınınca beklenir ve üst üste gelirse iş sonraki çalışmaya bırakılır.
+
+	node scripts/ph-sync.mjs links                # PH bağlantılarını kontrol eder → data/ph-link-status.json
+	PH_TOKEN=... node scripts/ph-sync.mjs candidates --days 7   # aday lansmanlar → data/adaylar.json
+
+Aday taraması [Product Hunt API v2](https://api.producthunt.com/v2/docs) ile gün gün yapılır. API'nin 15 dakikalık kotası (6250 puan) yanıt başlıklarından izlenir; kota azalınca sıfırlanması beklenir. Tamamlanan günler `data/ph-sync-state.json`'a yazılır, yarıda kalan tarama oradan devam eder.
+
+Adaylar yalnızca keşif sinyaliyle (maker açıklamasında Türkiye/İstanbul, `.tr` alan adı, kayıtlı şirket alan adı) bulunur ve siteye **eklenmez**. Her aday [Yöntem](https://producthuntturkey.netlify.app/yontem/) sayfasındaki kurallara göre kaynaklarıyla doğrulandıktan sonra elle `launches.json`'a taşınır.
+
+`.github/workflows/ph-sync.yml` bunu her pazartesi çalıştırır ve sonucu PR olarak açar. Aday taraması için depo ayarlarında `PH_TOKEN` secret'ı tanımlanmalı (Product Hunt API Dashboard → uygulama oluştur → Developer Token). Ticari kullanım için Product Hunt'ın izni gerekir.
+
 ## Topluluk
 
 * Telegram: <https://t.me/producthuntturkey>
