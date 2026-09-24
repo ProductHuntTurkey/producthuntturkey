@@ -1,0 +1,59 @@
+[
+  {
+    "phPostId": "1255813",
+    "name": "Speafy — Learn the way your brain wants.",
+    "tagline": "Learn any language, taught by AI — starting with Turkish",
+    "phUrl": "https://www.producthunt.com/products/speafy-learn-the-way-your-brain-wants?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+turkey+%28ID%3A+300245%29",
+    "website": "https://www.producthunt.com/r/TIZX274EY6XYYN?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+turkey+%28ID%3A+300245%29",
+    "launchDate": "2026-09-21",
+    "makers": [
+      {
+        "name": "Hooman Mahmoudi",
+        "username": "hooman_mahmoudi54"
+      }
+    ],
+    "signals": [
+      "tagline: “Learn any language, taught by AI — starting with Turkish”"
+    ],
+    "foundAt": "2026-09-24",
+    "review": "bekliyor"
+  },
+  {
+    "phPostId": "1255303",
+    "name": "AltınVeri",
+    "tagline": "Live gold, silver and FX data for Türkiye",
+    "phUrl": "https://www.producthunt.com/products/altinveri?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+turkey+%28ID%3A+300245%29",
+    "website": "https://www.producthunt.com/r/OQYJ6TT2ZYRY3G?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+turkey+%28ID%3A+300245%29",
+    "launchDate": "2026-09-21",
+    "makers": [
+      {
+        "name": "Kaan Yıldız",
+        "username": "kaanyildiz"
+      }
+    ],
+    "signals": [
+      "tagline: “Live gold, silver and FX data for Türkiye”"
+    ],
+    "foundAt": "2026-09-24",
+    "review": "bekliyor"
+  },
+  {
+    "phPostId": "1256587",
+    "name": "Vergino AI",
+    "tagline": "Turkish tax law search, every result tied to its legal basis",
+    "phUrl": "https://www.producthunt.com/products/vergino-ai?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+turkey+%28ID%3A+300245%29",
+    "website": "https://www.producthunt.com/r/ZI6YNZQUQYT7JF?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+turkey+%28ID%3A+300245%29",
+    "launchDate": "2026-09-22",
+    "makers": [
+      {
+        "name": "Hasan Dönmez",
+        "username": "vergino"
+      }
+    ],
+    "signals": [
+      "tagline: “Turkish tax law search, every result tied to its legal basis”"
+    ],
+    "foundAt": "2026-09-24",
+    "review": "bekliyor"
+  }
+]
