@@ -115,6 +115,7 @@ query Posts($after: String, $postedAfter: DateTime!, $postedBefore: DateTime!, $
     pageInfo { hasNextPage endCursor }
     nodes {
       id name tagline slug url website featuredAt createdAt
+      productLinks { type url }
       makers { name username headline twitterUsername }
     }
   }
@@ -155,14 +156,34 @@ async function graphql(token, variables) {
 // Keşif sinyalleri. Hiçbiri tek başına Türkiye bağlantısı kanıtı değildir (bkz. /yontem/).
 const TURKEY_TEXT = /(?<!\p{L})(?:t[uü]rkiye|turkey|t[uü]rk|turkish|[iİ]stanbul|ankara|[iİ]zmir)(?!\p{L})/iu;
 
+// API adreslere utm parametreleri ekler; karşılaştırma ve kayıt için temizlenir.
+function cleanUrl(url) {
+  if (!url) return null;
+  const u = new URL(url);
+  u.search = '';
+  u.hash = '';
+  return u.toString().replace(/\/$/, '');
+}
+
+// `website` bir PH yönlendirmesidir (producthunt.com/r/...); gerçek alan adları productLinks'te olabilir.
+function productHosts(post) {
+  return (post.productLinks ?? [])
+    .map((l) => {
+      try {
+        return new URL(l.url).hostname.replace(/^www\./, '');
+      } catch {
+        return null;
+      }
+    })
+    .filter((h) => h && !h.endsWith('producthunt.com'));
+}
+
 function signals(post, knownDomains) {
   const found = [];
-  let host = '';
-  try {
-    host = new URL(post.website).hostname.replace(/^www\./, '');
-  } catch {}
-  if (host.endsWith('.tr')) found.push(`.tr alan adı (${host})`);
-  if (knownDomains.has(host)) found.push(`kayıtlı şirket alan adı (${host})`);
+  for (const host of productHosts(post)) {
+    if (host.endsWith('.tr')) found.push(`.tr alan adı (${host})`);
+    if (knownDomains.has(host)) found.push(`kayıtlı şirket alan adı (${host})`);
+  }
   for (const m of post.makers ?? []) {
     if (m.headline && TURKEY_TEXT.test(m.headline)) found.push(`maker açıklaması: ${m.name} — “${m.headline}”`);
   }
@@ -183,7 +204,7 @@ async function collectCandidates() {
   }
   const days = Number(argValue('days', 7));
   const state = await readJson(SYNC_STATE, { completedDays: [] });
-  const candidates = await readJson(CANDIDATES, []);
+  const candidates = (await readJson(CANDIDATES, [])).map((c) => ({ ...c, phUrl: cleanUrl(c.phUrl), website: cleanUrl(c.website) }));
   const launches = await readJson(LAUNCHES, []);
   const companies = await readJson(COMPANIES, []);
   const knownUrls = new Set(launches.map((l) => l.phUrl));
@@ -212,7 +233,8 @@ async function collectCandidates() {
       });
       pages++;
       for (const post of data.posts.nodes) {
-        if (seen.has(post.id) || knownUrls.has(post.url)) continue;
+        const phUrl = cleanUrl(post.url);
+        if (seen.has(post.id) || knownUrls.has(phUrl)) continue;
         const found = signals(post, knownDomains);
         if (!found.length) continue;
         seen.add(post.id);
@@ -221,8 +243,9 @@ async function collectCandidates() {
           phPostId: post.id,
           name: post.name,
           tagline: post.tagline,
-          phUrl: post.url,
-          website: post.website,
+          phUrl,
+          website: cleanUrl(post.website),
+          productHosts: productHosts(post),
           launchDate: (post.featuredAt ?? post.createdAt).slice(0, 10),
           makers: (post.makers ?? []).map((m) => ({ name: m.name, username: m.username })),
           signals: found,
